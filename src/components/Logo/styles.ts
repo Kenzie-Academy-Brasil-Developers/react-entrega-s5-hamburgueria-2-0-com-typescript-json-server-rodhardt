@@ -5,6 +5,7 @@ export const LogoStyled = styled.section`
   margin: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   h1 span {
     color: var(--secondary);
@@ -55,6 +56,8 @@ export const LogoStyled = styled.section`
   }
 
   @media screen and (min-width: 750px) {
+    width: 50%;
+
     .balls {
       display: flex;
       flex-wrap: wrap;

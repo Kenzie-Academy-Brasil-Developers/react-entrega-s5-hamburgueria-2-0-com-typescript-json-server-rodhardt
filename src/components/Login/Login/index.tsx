@@ -1,7 +1,5 @@
 import { LoginStyled } from "../styles";
 
-import { TextField } from "@material-ui/core";
-
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -31,31 +29,21 @@ function Login({ setIsRegistered }: LoginProps) {
       <h4>Login</h4>
       <form className="form" onSubmit={handleSubmit(signIn)}>
         <div className="divider">
-          <TextField
-            label="E-mail"
-            margin="dense"
-            variant="outlined"
-            size="small"
-            color="primary"
-            {...register("email")}
-            error={!!errors.email}
-            helperText={errors.email?.message}
-          />
+          <input placeholder="E-mail" {...register("email")} />
+          <p>{errors.email?.message}</p>
         </div>
         <div className="divider">
-          <TextField
-            label="Senha"
-            margin="dense"
+          <input
+            placeholder="Senha"
             type="password"
-            variant="outlined"
-            size="small"
-            color="primary"
             {...register("password")}
-            error={!!errors.password}
-            helperText={errors.password?.message}
           />
+          <p>{errors.password?.message}</p>
         </div>
+        <button type="submit">Login</button>
       </form>
+      <p>Crie sua conta para saborear muitas delícias e matar sua fome!</p>
+      <button onClick={() => setIsRegistered(false)}>Cadastrar</button>
     </LoginStyled>
   );
 }

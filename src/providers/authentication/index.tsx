@@ -12,7 +12,7 @@ interface AuthProviderData {
   userId: number;
   authenticate: () => void;
   signIn: (userData: UserData) => void;
-  register: (userData: UserData) => void;
+  registerUser: (userData: UserData) => void;
   logout: () => void;
 }
 
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       .catch((err) => console.log(err));
   };
 
-  const register = (userData: UserData) => {
+  const registerUser = (userData: UserData) => {
     axios
       .post("https://hamburgueria-rodhadt.herokuapp.com/users/", userData)
       .then((response) => {
@@ -77,7 +77,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         userId,
         authenticate,
         signIn,
-        register,
+        registerUser,
         logout,
       }}
     >

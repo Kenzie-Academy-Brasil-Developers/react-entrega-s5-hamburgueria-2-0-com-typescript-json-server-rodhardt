@@ -14,14 +14,14 @@ function LoginPage() {
   }, []);
 
   return (
-    <>
+    <section className="login">
       <Logo />
       {isRegistered ? (
         <Login setIsRegistered={setIsRegistered} />
       ) : (
         <Register setIsRegistered={setIsRegistered} />
       )}
-    </>
+    </section>
   );
 }
 
