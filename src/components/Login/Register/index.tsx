@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { TextField } from "@material-ui/core";
+
 import { useAuth } from "../../../providers/authentication";
 
 interface LoginProps {
@@ -39,28 +41,54 @@ function Register({ setIsRegistered }: LoginProps) {
       </h4>
       <form className="form" onSubmit={handleSubmit(registerUser)}>
         <div className="divider">
-          <input placeholder="Nome" {...register("name")} />
-          <p>{errors.name?.message}</p>
+          <TextField
+            label="Nome"
+            margin="dense"
+            variant="outlined"
+            size="small"
+            color="primary"
+            {...register("name")}
+            error={!!errors.name}
+            helperText={errors.name?.message}
+          />
         </div>
         <div className="divider">
-          <input placeholder="E-mail" {...register("email")} />
-          <p>{errors.email?.message}</p>
+          <TextField
+            label="Email"
+            margin="dense"
+            variant="outlined"
+            size="small"
+            color="primary"
+            {...register("email")}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+          />
         </div>
         <div className="divider">
-          <input
-            placeholder="Senha"
+          <TextField
+            label="Senha"
             type="password"
+            margin="dense"
+            variant="outlined"
+            size="small"
+            color="primary"
             {...register("password")}
+            error={!!errors.password}
+            helperText={errors.password?.message}
           />
-          <p>{errors.password?.message}</p>
         </div>
         <div className="divider">
-          <input
-            placeholder="Confirmar Senha"
+          <TextField
+            label="Confirme sua senha"
             type="password"
+            margin="dense"
+            variant="outlined"
+            size="small"
+            color="primary"
             {...register("passwordConfirm")}
+            error={!!errors.passwordConfirm}
+            helperText={errors.passwordConfirm?.message}
           />
-          <p>{errors.passwordConfirm?.message}</p>
         </div>
         <button type="submit">Cadastrar</button>
       </form>
