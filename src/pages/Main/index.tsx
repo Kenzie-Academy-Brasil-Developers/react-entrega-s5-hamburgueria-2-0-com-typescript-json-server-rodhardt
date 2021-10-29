@@ -1,5 +1,6 @@
 import ProductsList from "../../components/ProductsList";
 import Header from "../../components/Header";
+import Cart from "../../components/Cart";
 
 import { useAuth } from "../../providers/authentication";
 
@@ -16,6 +17,7 @@ function MainPage() {
     <>
       <Header />
       <ProductsList />
+      <Cart />
     </>
   );
 }

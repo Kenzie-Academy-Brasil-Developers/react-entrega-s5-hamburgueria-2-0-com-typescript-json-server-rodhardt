@@ -61,7 +61,7 @@ function ProductsList() {
       name: "Top Sundae",
       category: "sobremesas",
       price: 10,
-      img: "https://images-americanas.b2w.io/produtos/01/00/img/1803368/5/1803368520_1GG.jpg",
+      img: "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
     },
   ]);
 

@@ -6,5 +6,11 @@ export const ProductsListStyled = styled.section`
   ul {
     display: flex;
     flex-wrap: wrap;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin: 10px;
   }
 `;
