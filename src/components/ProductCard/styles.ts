@@ -5,7 +5,10 @@ export const ProductCardStyled = styled.div`
   display: flex;
   flex-direction: column;
 
+  .img-container {
+    background-color: grey;
+  }
   img {
-    width: 80px;
+    width: 180px;
   }
 `;

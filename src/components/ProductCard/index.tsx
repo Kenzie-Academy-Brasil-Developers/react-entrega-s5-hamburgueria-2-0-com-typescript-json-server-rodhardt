@@ -3,7 +3,9 @@ import { ProductCardStyled } from "./styles";
 function ProductCard({ product }: any) {
   return (
     <ProductCardStyled>
-      <img src={`../../../public/images/${product.img}`} alt={product.name} />
+      <div className="img-container">
+        <img src={product.img} alt={product.name} />
+      </div>
       <h4>{product.name}</h4>
       <p>{product.category}</p>
       <h5>{product.price}</h5>
