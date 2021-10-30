@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Logo from "../../components/Logo";
 
 import Register from "../../components/Login/Register";
+import { LoginStyled } from "./styles";
 
 function LoginPage() {
   const { authenticate } = useAuth();
@@ -14,14 +15,19 @@ function LoginPage() {
   }, []);
 
   return (
-    <section className="login">
-      <Logo />
+    <LoginStyled>
       {isRegistered ? (
-        <Login setIsRegistered={setIsRegistered} />
+        <>
+          <Logo />
+          <Login setIsRegistered={setIsRegistered} />
+        </>
       ) : (
-        <Register setIsRegistered={setIsRegistered} />
+        <>
+          <Register setIsRegistered={setIsRegistered} />
+          <Logo />
+        </>
       )}
-    </section>
+    </LoginStyled>
   );
 }
 

@@ -2,10 +2,19 @@ import styled from "styled-components";
 
 export const LogoStyled = styled.section`
   width: 95%;
+  min-width: 290px;
+  max-width: 320px;
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  h1 {
+    align-self: flex-start;
+    width: 304px;
+    text-align: left;
+    margin: 0 auto 15px;
+  }
 
   h1 span {
     color: var(--secondary);
@@ -26,7 +35,8 @@ export const LogoStyled = styled.section`
     display: flex;
     align-items: center;
     height: 100px;
-    width: 304px;
+    width: 100%;
+    max-width: 304px;
   }
 
   .container .icon {
@@ -57,12 +67,16 @@ export const LogoStyled = styled.section`
 
   @media screen and (min-width: 750px) {
     width: 50%;
-
+    max-width: 450px;
+  }
+  @media screen and (min-width: 1000px) {
     .balls {
       display: flex;
       flex-wrap: wrap;
       width: 200px;
       height: 100px;
+      margin-top: 30px;
+      transform: translateX(-58px);
     }
     .balls div {
       width: 12px;

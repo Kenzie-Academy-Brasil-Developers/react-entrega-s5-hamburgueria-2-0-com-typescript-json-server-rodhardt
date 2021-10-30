@@ -37,6 +37,9 @@ function Login({ setIsRegistered }: LoginProps) {
             variant="outlined"
             size="small"
             color="primary"
+            inputProps={{
+              style: { width: "250px" },
+            }}
             {...register("email")}
             error={!!errors.email}
             helperText={errors.email?.message}
@@ -50,15 +53,25 @@ function Login({ setIsRegistered }: LoginProps) {
             variant="outlined"
             size="small"
             color="primary"
+            inputProps={{
+              style: { width: "250px" },
+            }}
             {...register("password")}
             error={!!errors.password}
             helperText={errors.password?.message}
           />
         </div>
-        <button type="submit">Login</button>
+        <button className="login-button" type="submit">
+          Logar
+        </button>
       </form>
       <p>Crie sua conta para saborear muitas delícias e matar sua fome!</p>
-      <button onClick={() => setIsRegistered(false)}>Cadastrar</button>
+      <button
+        className="register-button"
+        onClick={() => setIsRegistered(false)}
+      >
+        Cadastrar
+      </button>
     </LoginStyled>
   );
 }

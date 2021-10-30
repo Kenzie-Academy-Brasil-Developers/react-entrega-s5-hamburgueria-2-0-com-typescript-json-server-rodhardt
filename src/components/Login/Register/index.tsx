@@ -47,6 +47,9 @@ function Register({ setIsRegistered }: LoginProps) {
             variant="outlined"
             size="small"
             color="primary"
+            inputProps={{
+              style: { width: "250px" },
+            }}
             {...register("name")}
             error={!!errors.name}
             helperText={errors.name?.message}
@@ -59,6 +62,9 @@ function Register({ setIsRegistered }: LoginProps) {
             variant="outlined"
             size="small"
             color="primary"
+            inputProps={{
+              style: { width: "250px" },
+            }}
             {...register("email")}
             error={!!errors.email}
             helperText={errors.email?.message}
@@ -72,6 +78,9 @@ function Register({ setIsRegistered }: LoginProps) {
             variant="outlined"
             size="small"
             color="primary"
+            inputProps={{
+              style: { width: "250px" },
+            }}
             {...register("password")}
             error={!!errors.password}
             helperText={errors.password?.message}
@@ -85,12 +94,17 @@ function Register({ setIsRegistered }: LoginProps) {
             variant="outlined"
             size="small"
             color="primary"
+            inputProps={{
+              style: { width: "250px" },
+            }}
             {...register("passwordConfirm")}
             error={!!errors.passwordConfirm}
             helperText={errors.passwordConfirm?.message}
           />
         </div>
-        <button type="submit">Cadastrar</button>
+        <button className="register-button" type="submit">
+          Cadastrar
+        </button>
       </form>
     </LoginStyled>
   );
