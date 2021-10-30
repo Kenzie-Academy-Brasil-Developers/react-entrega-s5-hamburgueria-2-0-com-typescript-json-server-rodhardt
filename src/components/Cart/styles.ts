@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CartStyled = styled.section`
+export const CartStyled = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -27,5 +27,10 @@ export const CartStyled = styled.section`
   header {
     display: flex;
     justify-content: space-between;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
   }
 `;

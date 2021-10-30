@@ -1,7 +1,7 @@
 import { HeaderStyled } from "./styles";
 import { FaShoppingCart, FaSignOutAlt, FaSearch } from "react-icons/fa";
 
-function Header() {
+function Header({ setShowCart }: any) {
   return (
     <HeaderStyled>
       <h1>
@@ -12,7 +12,7 @@ function Header() {
         <FaSearch />
       </div>
       <div>
-        <FaShoppingCart />
+        <FaShoppingCart onClick={() => setShowCart(true)} />
       </div>
       <div>
         <FaSignOutAlt />
