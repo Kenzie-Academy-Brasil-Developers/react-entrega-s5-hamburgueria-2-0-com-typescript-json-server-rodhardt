@@ -7,9 +7,11 @@ import { useProducts } from "../../providers/products";
 
 import { useState, useEffect } from "react";
 
+import CartLoading from "../../components/CartLoading";
+
 function MainPage() {
   const { authenticate } = useAuth();
-  const { currentCart } = useProducts();
+  const { isLoadingCart, currentCart } = useProducts();
   const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
@@ -22,6 +24,7 @@ function MainPage() {
       <Header setShowCart={setShowCart} />
       <ProductsList />
       {showCart && <Cart setShowCart={setShowCart} />}
+      {isLoadingCart ? <CartLoading /> : null}
     </>
   );
 }

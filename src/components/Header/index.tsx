@@ -1,7 +1,11 @@
 import { HeaderStyled } from "./styles";
 import { FaShoppingCart, FaSignOutAlt, FaSearch } from "react-icons/fa";
 
+import { useAuth } from "../../providers/authentication";
+
 function Header({ setShowCart }: any) {
+  const { logout } = useAuth();
+
   return (
     <HeaderStyled>
       <h1>
@@ -15,7 +19,7 @@ function Header({ setShowCart }: any) {
         <FaShoppingCart onClick={() => setShowCart(true)} />
       </div>
       <div>
-        <FaSignOutAlt />
+        <FaSignOutAlt onClick={() => logout()} />
       </div>
     </HeaderStyled>
   );

@@ -1,7 +1,7 @@
 import { CartCardStyled } from "./styles";
 import { ProductData } from "../../assets/types/product";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useProducts } from "../../providers/products";
 
@@ -10,14 +10,20 @@ import { FaTrash } from "react-icons/fa";
 function CartCard({ product }: any) {
   const [quantity, setQuantity] = useState(product.quantity);
 
-  const { addCart, removeCart } = useProducts();
+  const { cart, addCart, removeCart } = useProducts();
 
   const handleRemover = () => {
-    if (quantity > 0) {
-      addCart(product.id, quantity - 1);
+    if (quantity > 1) {
+      addCart(product.productId, quantity - 1);
       setQuantity(quantity - 1);
+    } else {
+      removeCart(product.productId);
     }
   };
+
+  useEffect(() => {
+    setQuantity(product.quantity);
+  }, [cart]);
 
   return (
     <CartCardStyled>
@@ -37,7 +43,7 @@ function CartCard({ product }: any) {
           <h4>{quantity}</h4>
           <button
             onClick={() => {
-              addCart(product.id, quantity + 1);
+              addCart(product.productId, quantity + 1);
               setQuantity(quantity + 1);
             }}
           >
@@ -46,7 +52,7 @@ function CartCard({ product }: any) {
         </div>
       </div>
       <div className="icon-container">
-        <FaTrash onClick={() => removeCart(product.id)} />
+        <FaTrash onClick={() => removeCart(product.productId)} />
       </div>
     </CartCardStyled>
   );

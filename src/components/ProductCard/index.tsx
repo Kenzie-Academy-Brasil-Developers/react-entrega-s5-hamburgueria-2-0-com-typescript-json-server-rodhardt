@@ -15,8 +15,10 @@ function ProductCard({ product }: any) {
           return cv.productId === product.id ? acm + cv.quantity : acm;
         }, 0)
       );
+    } else {
+      setCurrentQuantity(0);
     }
-  }, []);
+  }, [cart]);
 
   return (
     <ProductCardStyled>

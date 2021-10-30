@@ -12,6 +12,7 @@ interface ProductsProviderProps {
 interface ProductsProviderData {
   productsList: ProductData[];
   cart: CartData[];
+  isLoadingCart: boolean;
   handleProducts: () => void;
   currentCart: () => void;
   addCart: (itemId: number, quantity: number) => void;
@@ -29,8 +30,11 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
     [] as ProductData[]
   );
   const { authToken, userId } = useAuth();
+  const [cartId, setCartId] = useState<number>();
 
   const [cart, setCart] = useState<CartData[]>([] as CartData[]);
+
+  const [isLoadingCart, setIsLoadingCart] = useState(false);
 
   const handleProducts = () => {
     axios
@@ -44,7 +48,10 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
       .get(
         `https://hamburgueria-rodhadt.herokuapp.com/carts?userId=${userId}&status=progress`
       )
-      .then((response) => setCart([...response.data]))
+      .then((response) => {
+        setCart([...response.data]);
+        setCartId(response.data[0].id);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -63,12 +70,13 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
                     food.productId === itemId ? quantity : food.quantity,
                 };
               }),
+          id: cartId,
         },
       ];
       setCart(modifiedCart as CartData[]);
       axios
         .patch(
-          `https://hamburgueria-rodhadt.herokuapp.com/carts/${cart[0].id}`,
+          `https://hamburgueria-rodhadt.herokuapp.com/carts/${cartId}`,
           modifiedCart[0],
           {
             headers: { Authorization: `Bearer ${authToken}` },
@@ -77,9 +85,10 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
         .then((response) => console.log("cart atualizado"))
         .catch((err) => console.log(err));
     } else {
+      setIsLoadingCart(true);
       const newCart = [
         {
-          userId: cart[0].userId,
+          userId: userId,
           status: "progress",
           order: [{ productId: itemId, quantity: quantity }],
         },
@@ -89,34 +98,40 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
         .post(`https://hamburgueria-rodhadt.herokuapp.com/carts/`, newCart[0], {
           headers: { Authorization: `Bearer ${authToken}` },
         })
-        .then((response) =>
-          setCart([{ ...newCart, id: response.data.id }] as any)
-        )
+        .then((response) => {
+          setIsLoadingCart(false);
+          setCartId(response.data.id);
+        })
         .catch((err) => console.log(err));
     }
   };
 
   const removeCart = (itemId: number) => {
-    const modifiedCart = [
-      {
-        userId: cart[0].userId,
-        status: "progress",
-        order: [
-          ...cart[0].order.filter((product) => product.productId !== itemId),
-        ],
-      },
-    ];
-    setCart(modifiedCart);
-    axios
-      .patch(
-        `https://hamburgueria-rodhadt.herokuapp.com/carts/${cart[0].id}`,
-        modifiedCart[0],
+    if (cart[0].order.length === 1) {
+      deleteCart();
+    } else {
+      const modifiedCart = [
         {
-          headers: { Authorization: `Bearer ${authToken}` },
-        }
-      )
-      .then((response) => console.log("cart atualizado"))
-      .catch((err) => console.log(err));
+          userId: cart[0].userId,
+          status: "progress",
+          order: [
+            ...cart[0].order.filter((product) => product.productId !== itemId),
+          ],
+          id: cartId,
+        },
+      ];
+      setCart(modifiedCart);
+      axios
+        .patch(
+          `https://hamburgueria-rodhadt.herokuapp.com/carts/${cartId}`,
+          modifiedCart[0],
+          {
+            headers: { Authorization: `Bearer ${authToken}` },
+          }
+        )
+        .then((response) => console.log("cart atualizado"))
+        .catch((err) => console.log(err));
+    }
   };
 
   const completeCart = () => {
@@ -125,12 +140,13 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
         userId: cart[0].userId,
         status: "complete",
         order: cart[0].order,
+        id: cartId,
       },
     ];
     setCart([]);
     axios
       .patch(
-        `https://hamburgueria-rodhadt.herokuapp.com/carts/${cart[0].id}`,
+        `https://hamburgueria-rodhadt.herokuapp.com/carts/${cartId}`,
         modifiedCart[0],
         {
           headers: { Authorization: `Bearer ${authToken}` },
@@ -143,12 +159,9 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
   const deleteCart = () => {
     setCart([]);
     axios
-      .delete(
-        `https://hamburgueria-rodhadt.herokuapp.com/carts/${cart[0].id}`,
-        {
-          headers: { Authorization: `Bearer ${authToken}` },
-        }
-      )
+      .delete(`https://hamburgueria-rodhadt.herokuapp.com/carts/${cartId}`, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      })
       .then((response) => console.log("cart atualizado"))
       .catch((err) => console.log(err));
   };
@@ -158,6 +171,7 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
       value={{
         productsList,
         cart,
+        isLoadingCart,
         handleProducts,
         currentCart,
         addCart,

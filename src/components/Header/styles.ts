@@ -10,4 +10,8 @@ export const HeaderStyled = styled.header`
     color: var(--secondary);
     font-size: 18px;
   }
+
+  div {
+    margin: 10px;
+  }
 `;
