@@ -11,6 +11,10 @@ export const HeaderStyled = styled.header`
     font-size: 18px;
   }
 
+  input {
+    width: 50px;
+  }
+
   div {
     margin: 10px;
   }
