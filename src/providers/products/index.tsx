@@ -102,7 +102,10 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
           setIsLoadingCart(false);
           setCartId(response.data.id);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setIsLoadingCart(false);
+        });
     }
   };
 

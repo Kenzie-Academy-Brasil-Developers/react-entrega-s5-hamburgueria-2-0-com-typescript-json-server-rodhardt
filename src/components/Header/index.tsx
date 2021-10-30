@@ -11,15 +11,17 @@ function Header({ setShowCart }: any) {
       <h1>
         Burguer <span>Kenzie</span>
       </h1>
-      <input placeholder="Pesquise" />
-      <div>
-        <FaSearch />
-      </div>
-      <div>
-        <FaShoppingCart onClick={() => setShowCart(true)} />
-      </div>
-      <div>
-        <FaSignOutAlt onClick={() => logout()} />
+      <div className="options">
+        <input placeholder="Pesquise" />
+        <div className="icons search">
+          <FaSearch />
+        </div>
+        <div className="icons">
+          <FaShoppingCart onClick={() => setShowCart(true)} />
+        </div>
+        <div className="icons">
+          <FaSignOutAlt onClick={() => logout()} />
+        </div>
       </div>
     </HeaderStyled>
   );

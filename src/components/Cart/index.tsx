@@ -66,7 +66,7 @@ function Cart({ setShowCart }: any) {
       <div className="opacity" onClick={() => handleShowCart()}></div>
       <div className="cart">
         <header>
-          <h2>Cart</h2>
+          <h4>Carrinho de compras</h4>
           <button onClick={() => handleShowCart()}>X</button>
         </header>
         <div>
@@ -88,7 +88,7 @@ function Cart({ setShowCart }: any) {
         </div>
         {isLoading ? null : cart.length > 0 ? (
           <div>
-            <p>
+            <p className="total">
               Total
               <span>
                 R$
@@ -107,8 +107,11 @@ function Cart({ setShowCart }: any) {
             </p>
 
             <div className="buttons-container">
-              <button onClick={() => deleteCart()}>Remover todos</button>
+              <button className="remove-button" onClick={() => deleteCart()}>
+                Remover todos
+              </button>
               <button
+                className="complete-button"
                 onClick={() => {
                   completeCart();
                   setCartMessage(
