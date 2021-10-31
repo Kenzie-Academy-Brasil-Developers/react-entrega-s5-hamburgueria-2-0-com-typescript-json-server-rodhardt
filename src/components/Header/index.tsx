@@ -9,13 +9,17 @@ import { useEffect, useState } from "react";
 
 import { useProducts } from "../../providers/products";
 
-function Header({ setShowCart }: any) {
+interface HeaderProps {
+  setShowCart: (boolean: boolean) => void;
+}
+
+function Header({ setShowCart }: HeaderProps) {
   const { logout } = useAuth();
   const { cart } = useProducts();
 
-  const [isSearching, setIsSearching] = useState(false);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
   const handleWidth = () => {
     setScreenWidth(window.innerWidth);

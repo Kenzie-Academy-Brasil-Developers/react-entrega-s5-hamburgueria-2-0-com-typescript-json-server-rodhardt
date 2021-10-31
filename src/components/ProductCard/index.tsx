@@ -3,10 +3,16 @@ import { ProductCardStyled } from "./styles";
 import { useProducts } from "../../providers/products";
 import { useState, useEffect } from "react";
 
-function ProductCard({ product }: any) {
+import { ProductData } from "../../assets/types/product";
+
+interface ProductCardProps {
+  product: ProductData;
+}
+
+function ProductCard({ product }: ProductCardProps) {
   const { cart, addCart } = useProducts();
 
-  const [currentQuantity, setCurrentQuantity] = useState(0);
+  const [currentQuantity, setCurrentQuantity] = useState<number>(0);
 
   useEffect(() => {
     if (cart.length > 0) {

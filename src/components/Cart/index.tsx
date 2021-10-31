@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import { ProductData } from "../../assets/types/product";
-import { CartData } from "../../assets/types/cart";
 
 import { useAuth } from "../../providers/authentication";
 import { useProducts } from "../../providers/products";
@@ -14,7 +13,11 @@ import CartCard from "../CartCard";
 import { FaRegSadTear, FaHamburger } from "react-icons/fa";
 import { RiMotorbikeFill } from "react-icons/ri";
 
-function Cart({ setShowCart }: any) {
+interface CartProps {
+  setShowCart: (boolean: boolean) => void;
+}
+
+function Cart({ setShowCart }: CartProps) {
   const { authToken } = useAuth();
   const { cart, currentCart, addCart, removeCart, completeCart, deleteCart } =
     useProducts();

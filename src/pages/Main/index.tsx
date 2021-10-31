@@ -12,7 +12,7 @@ import CartLoading from "../../components/CartLoading";
 function MainPage() {
   const { authenticate } = useAuth();
   const { isLoadingCart, currentCart } = useProducts();
-  const [showCart, setShowCart] = useState(false);
+  const [showCart, setShowCart] = useState<boolean>(false);
 
   useEffect(() => {
     authenticate();

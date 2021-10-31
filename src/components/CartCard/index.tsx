@@ -1,5 +1,4 @@
 import { CartCardStyled } from "./styles";
-import { ProductData } from "../../assets/types/product";
 
 import { useState, useEffect } from "react";
 
@@ -7,8 +6,20 @@ import { useProducts } from "../../providers/products";
 
 import { FaTrash } from "react-icons/fa";
 
-function CartCard({ product }: any) {
-  const [quantity, setQuantity] = useState(product.quantity);
+interface CartCardProps {
+  product: {
+    productId: number;
+    id?: number;
+    name: string;
+    category: string;
+    price: number;
+    img: string;
+    quantity: number;
+  };
+}
+
+function CartCard({ product }: CartCardProps) {
+  const [quantity, setQuantity] = useState<number>(product.quantity);
 
   const { cart, addCart, removeCart } = useProducts();
 

@@ -8,7 +8,7 @@ import { LoginStyled } from "./styles";
 
 function LoginPage() {
   const { authenticate } = useAuth();
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isRegistered, setIsRegistered] = useState<boolean>(false);
 
   useEffect(() => {
     authenticate();

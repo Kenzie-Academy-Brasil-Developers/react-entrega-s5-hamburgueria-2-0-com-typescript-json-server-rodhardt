@@ -22,7 +22,9 @@ function Login({ setIsRegistered }: LoginProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm<{ email: string; password: string }>({
+    resolver: yupResolver(schema),
+  });
 
   const { signIn } = useAuth();
 

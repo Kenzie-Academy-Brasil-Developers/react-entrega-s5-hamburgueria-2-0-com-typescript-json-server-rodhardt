@@ -29,7 +29,12 @@ function Register({ setIsRegistered }: LoginProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm<{
+    name: string;
+    email: string;
+    password: string;
+    passwordConfirm: string;
+  }>({ resolver: yupResolver(schema) });
 
   const { registerUser } = useAuth();
 

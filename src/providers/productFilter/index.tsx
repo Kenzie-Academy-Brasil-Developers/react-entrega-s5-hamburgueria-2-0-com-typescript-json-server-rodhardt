@@ -19,8 +19,8 @@ const ProductsFilterContext = createContext<ProductsFilterProviderData>(
 export const ProductsFilterProvider = ({
   children,
 }: ProductsFilterProviderProps) => {
-  const [filterValue, setFilterValue] = useState("");
-  const [isFilter, setIsFilter] = useState(false);
+  const [filterValue, setFilterValue] = useState<string>("");
+  const [isFilter, setIsFilter] = useState<boolean>(false);
 
   const handleFilter = (searchText: string) => {
     setFilterValue(searchText);

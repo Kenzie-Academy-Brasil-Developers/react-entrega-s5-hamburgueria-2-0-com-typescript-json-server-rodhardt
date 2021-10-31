@@ -1,14 +1,16 @@
 import { SearchStyled } from "./styles";
 
-import { useState } from "react";
-
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineDeleteSweep } from "react-icons/md";
 
 import { useProductsFilter } from "../../providers/productFilter";
-import { useProducts } from "../../providers/products";
 
-function HeaderSearch({ className, setIsSearching }: any) {
+interface HeaderSearchProps {
+  className: string;
+  setIsSearching: (boolean: boolean) => void;
+}
+
+function HeaderSearch({ className, setIsSearching }: HeaderSearchProps) {
   const { filterValue, setFilterValue, handleFilter, removeFilter } =
     useProductsFilter();
 

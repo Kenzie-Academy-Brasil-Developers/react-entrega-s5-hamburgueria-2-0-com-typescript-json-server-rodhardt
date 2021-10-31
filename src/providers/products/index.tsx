@@ -34,7 +34,7 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
 
   const [cart, setCart] = useState<CartData[]>([] as CartData[]);
 
-  const [isLoadingCart, setIsLoadingCart] = useState(false);
+  const [isLoadingCart, setIsLoadingCart] = useState<boolean>(false);
 
   const handleProducts = () => {
     axios
