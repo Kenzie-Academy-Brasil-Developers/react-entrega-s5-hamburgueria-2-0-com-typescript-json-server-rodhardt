@@ -5,21 +5,31 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineDeleteSweep } from "react-icons/md";
 
+import { useProductsFilter } from "../../providers/productFilter";
+import { useProducts } from "../../providers/products";
+
 function HeaderSearch({ className, setIsSearching }: any) {
-  const [searchInput, setSearchInput] = useState("");
+  const { filterValue, setFilterValue, handleFilter, removeFilter } =
+    useProductsFilter();
 
   return (
     <SearchStyled className={className}>
       <input
-        value={searchInput}
+        value={filterValue}
         placeholder="Pesquisar"
-        onChange={(evt) => setSearchInput(evt.target.value)}
+        onChange={(evt) => setFilterValue(evt.target.value)}
       ></input>
       <div className="icon-container">
         <div className="search-start">
-          <FaSearch />
+          <FaSearch onClick={() => handleFilter(filterValue)} />
         </div>
-        <div onClick={() => setIsSearching(false)} className="search-cancel">
+        <div
+          onClick={() => {
+            setIsSearching(false);
+            removeFilter();
+          }}
+          className="search-cancel"
+        >
           <MdOutlineDeleteSweep />
         </div>
       </div>

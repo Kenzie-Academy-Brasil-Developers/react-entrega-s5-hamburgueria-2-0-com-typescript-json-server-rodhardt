@@ -32,7 +32,10 @@ function Header({ setShowCart }: any) {
           <h1>
             Burguer <span>Kenzie</span>
           </h1>
-          <HeaderSearch className="desktop-search" />
+          <HeaderSearch
+            className="desktop-search"
+            setIsSearching={setIsSearching}
+          />
           <div className="options">
             <div className="icons">
               <FaShoppingCart

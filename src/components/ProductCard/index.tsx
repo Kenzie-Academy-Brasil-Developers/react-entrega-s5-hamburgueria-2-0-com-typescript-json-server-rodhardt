@@ -26,7 +26,11 @@ function ProductCard({ product }: any) {
         <img src={product.img} alt={product.name} />
       </div>
       <h4>{product.name}</h4>
-      <p>{product.category}</p>
+      <p>
+        {product.category[0]
+          .toUpperCase()
+          .concat(product.category.substring(1))}
+      </p>
       <h5>R$ {product.price.toFixed(2)}</h5>
       <button
         onClick={() => {

@@ -11,6 +11,10 @@ export const SearchStyled = styled.div`
     padding-left: 10px;
   }
 
+  input:focus {
+    border: 2px solid var(--gray600);
+  }
+
   .icon-container {
     display: flex;
     justify-content: space-between;
@@ -41,6 +45,11 @@ export const SearchStyled = styled.div`
     border-radius: 5px;
   }
 
+  .search-start:hover {
+    cursor: pointer;
+    background-color: #27ae6090;
+  }
+
   .search-cancel {
     background-color: var(--secondary);
     width: 22px;
@@ -50,5 +59,11 @@ export const SearchStyled = styled.div`
     align-items: center;
     border-radius: 5px;
     color: var(--gray600);
+  }
+
+  .search-cancel:hover {
+    cursor: pointer;
+    background-color: #eb575790;
+    color: #33333390;
   }
 `;

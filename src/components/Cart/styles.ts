@@ -43,6 +43,19 @@ export const CartStyled = styled.div`
     font-weight: bold;
   }
 
+  header button:hover {
+    color: var(--success);
+  }
+
+  .status-message p:first-child {
+    font-size: 16px;
+  }
+
+  .status-message p:last-child {
+    margin-top: 15px;
+    color: var(--grey300);
+  }
+
   ul {
     display: flex;
     flex-direction: column;

@@ -16,13 +16,18 @@ export const CartLoadingStyled = styled.div`
   align-items: center;
 
   .container {
-    background-color: var(--grey100);
-    width: 275px;
+    background-color: var(--primary);
+    color: white;
+    font-weight: bold;
+    width: 90%;
+    min-width: 278px;
+    max-width: 520px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 120px;
+
     border-radius: 15px;
   }
 `;

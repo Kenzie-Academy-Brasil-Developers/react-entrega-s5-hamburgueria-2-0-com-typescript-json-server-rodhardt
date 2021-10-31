@@ -11,6 +11,9 @@ import { useProducts } from "../../providers/products";
 
 import CartCard from "../CartCard";
 
+import { FaRegSadTear, FaHamburger } from "react-icons/fa";
+import { RiMotorbikeFill } from "react-icons/ri";
+
 function Cart({ setShowCart }: any) {
   const { authToken } = useAuth();
   const { cart, currentCart, addCart, removeCart, completeCart, deleteCart } =
@@ -20,9 +23,7 @@ function Cart({ setShowCart }: any) {
     [] as ProductData[]
   );
 
-  const [cartMessage, setCartMessage] = useState(
-    "Parece que seu carrinho está vazio :("
-  );
+  const [isEmptyOverComplete, setIsEmptyOverComplete] = useState(true);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -58,7 +59,7 @@ function Cart({ setShowCart }: any) {
 
   const handleShowCart = () => {
     setShowCart(false);
-    setCartMessage("Parece que seu carrinho está vazio :(");
+    setIsEmptyOverComplete(true);
   };
 
   return (
@@ -82,7 +83,24 @@ function Cart({ setShowCart }: any) {
                 </li>
               ))
             ) : (
-              <p>{cartMessage}</p>
+              <div className="status-message">
+                {isEmptyOverComplete ? (
+                  <>
+                    <p>
+                      Parece que seu carrinho está vazio <FaRegSadTear />
+                    </p>
+                    <p>Adicione itens</p>
+                  </>
+                ) : (
+                  <>
+                    <p>Seu pedido está sendo preparado!</p>
+                    <p>
+                      <FaHamburger />
+                      <RiMotorbikeFill />
+                    </p>
+                  </>
+                )}
+              </div>
             )}
           </ul>
         </div>
@@ -114,9 +132,7 @@ function Cart({ setShowCart }: any) {
                 className="complete-button"
                 onClick={() => {
                   completeCart();
-                  setCartMessage(
-                    "Obrigado! Em breve chegará seu delicioso lanche! :)"
-                  );
+                  setIsEmptyOverComplete(false);
                 }}
               >
                 Finalizar Compra

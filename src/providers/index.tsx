@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 
 import { AuthProvider } from "./authentication";
 import { ProductsProvider } from "./products";
+import { ProductsFilterProvider } from "./productFilter";
 
 interface ProvidersProps {
   children: ReactNode;
@@ -10,7 +11,9 @@ interface ProvidersProps {
 const Providers = ({ children }: ProvidersProps) => {
   return (
     <AuthProvider>
-      <ProductsProvider>{children}</ProductsProvider>
+      <ProductsProvider>
+        <ProductsFilterProvider>{children}</ProductsFilterProvider>
+      </ProductsProvider>
     </AuthProvider>
   );
 };
