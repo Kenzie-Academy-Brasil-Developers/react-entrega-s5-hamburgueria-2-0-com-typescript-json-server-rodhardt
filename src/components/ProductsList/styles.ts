@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ProductsListStyled = styled.section`
   width: 95%;
   margin: auto;
-  padding-top: 30px;
+  padding-top: 94px;
 
   ul {
     max-width: 1080px;
